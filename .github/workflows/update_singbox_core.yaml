@@ -72,10 +72,6 @@ jobs:
         uses: actions/setup-go@v5.0.0
         with:
           go-version: ${{needs.go.outputs.version}}
-          
-      - name: origin packages
-        run: |
-          go mod tidy
 
       - name: get sing-box version
         id: sing-box
@@ -94,6 +90,7 @@ jobs:
           else
             echo tags=$TAGS >> $GITHUB_OUTPUT
           fi
+          go mod tidy
   cross:
     strategy:
       matrix:
